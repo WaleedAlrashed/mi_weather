@@ -84,14 +84,15 @@ class _SelectLocationViewState extends State<SelectLocationView> {
                       height: 56,
                       child: Container(
                         decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [
-                            Color.fromRGBO(135, 67, 255, 1),
-                            Color.fromRGBO(11, 82, 248, 1),
-                          ],
-                        )),
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Color.fromRGBO(135, 67, 255, 1),
+                              Color.fromRGBO(11, 82, 248, 1),
+                            ],
+                          ),
+                        ),
                         child: Center(
                           child: Text('NEXT', style: mainTextStyle),
                         ),
