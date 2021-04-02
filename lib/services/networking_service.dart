@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:dio/dio.dart';
+
 import 'package:http/http.dart' as http;
 
 import 'dart:convert';
@@ -11,7 +11,7 @@ import 'package:mi_weather/services/services_locator.dart';
 
 class NetworkService {
   static const String BASE_URL =
-      "api.openweathermap.org/data/2.5/forecast?appid=$API_KEY&q=";
+      "https://api.openweathermap.org/data/2.5/forecast?appid=$API_KEY&cnt=5&q=";
   static const String API_KEY = "00e8b0d641802aa1843ca96219b28824";
 
   final logger = locator<LogService>();
@@ -25,21 +25,19 @@ class NetworkService {
 
   Future<dynamic> get(String url,
       {dynamic headers, bool requiresRefresh = true}) async {
-    appendAPITokenToHeader();
+    // appendAPITokenToHeader();
 
-    final Dio _dio = Dio(BaseOptions(headers: requestHeaders));
-
-    Response response;
+    http.Response response;
     try {
-      response = await _dio.get(
-        BASE_URL + url,
-        queryParameters: headers,
+      response = await http.get(
+        Uri.parse(BASE_URL + url),
+        // queryParameters: headers,
       );
       // responseJson = _returnResponse(response);
     } on SocketException {
       throw Exception('No Internet connection');
     } catch (e) {}
-    return response.data;
+    return response.body;
   }
 
   void appendAPITokenToHeader() =>

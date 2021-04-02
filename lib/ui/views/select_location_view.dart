@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mi_weather/models/weather.dart';
+import 'package:mi_weather/repositories/weather_repository.dart';
 import 'package:mi_weather/theme/styles.dart';
+import 'package:mi_weather/ui/views/main_location_view.dart';
 
 class SelectLocationView extends StatefulWidget {
   @override
@@ -9,6 +12,7 @@ class SelectLocationView extends StatefulWidget {
 }
 
 class _SelectLocationViewState extends State<SelectLocationView> {
+  final cityController = TextEditingController(text: "Damascus");
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -41,6 +45,7 @@ class _SelectLocationViewState extends State<SelectLocationView> {
                       vertical: 30.0,
                     ),
                     child: TextField(
+                      controller: cityController,
                       decoration: InputDecoration(
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -78,7 +83,22 @@ class _SelectLocationViewState extends State<SelectLocationView> {
                   ),
                   SizedBox(height: 170.0),
                   InkWell(
-                    onTap: () {},
+                    splashColor: Colors.red,
+                    onTap: () {
+                      print("Gg");
+                      final _weatherRepository = WeatherRepository();
+                      _weatherRepository
+                          .getWeatherForCity(cityController.text)
+                          .then(
+                            (data) => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    MainLocationView(weatherData: data),
+                              ),
+                            ),
+                          );
+                    },
                     child: SizedBox(
                       width: 144,
                       height: 56,

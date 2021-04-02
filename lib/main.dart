@@ -19,7 +19,7 @@ class MainApp extends StatelessWidget {
           button: TextStyle(color: Colors.white),
         ),
       ),
-      home: MainLocationView(),
+      home: SelectLocationView(),
     );
   }
 }
