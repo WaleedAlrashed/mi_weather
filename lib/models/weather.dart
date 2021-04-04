@@ -18,7 +18,7 @@ class WeatherData {
   final int cnt;
   final List<Forecast> forecastList;
   final City city;
-
+  bool isDay() => message == 0;
   factory WeatherData.fromJson(String str) =>
       WeatherData.fromMap(json.decode(str));
 

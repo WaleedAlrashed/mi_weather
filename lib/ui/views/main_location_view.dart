@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mi_weather/models/weather.dart';
 import 'package:mi_weather/theme/styles.dart';
+import 'package:date_time_format/date_time_format.dart';
+import 'package:mi_weather/utils/time_detector.dart';
 
 class MainLocationView extends StatefulWidget {
   WeatherData weatherData;
@@ -19,20 +21,28 @@ class _MainLocationViewState extends State<MainLocationView> {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text(weatherData.forecastList[0].dtTxt.toLocal().toString()),
+        centerTitle: true,
+        title: Text(
+          weatherData.forecastList[0].dtTxt
+              .format(DateFormats.europeanDayOfWeek),
+        ),
         leading: Center(
             child: FaIcon(
           FontAwesomeIcons.alignLeft,
           size: 16,
         )),
         flexibleSpace: Container(
-          decoration: mainContainerDecoration,
+          decoration: TimeDetector.isNight()
+              ? nightAppBarDecoration
+              : mainAppBarDecoration,
         ),
         elevation: 0.0,
       ),
       body: Container(
         alignment: Alignment.center,
-        decoration: mainContainerDecoration,
+        decoration: TimeDetector.isNight()
+            ? nightContainerDecoration
+            : mainContainerDecoration,
         child: ListView(
           children: [
             Text(weatherData.city.name),
