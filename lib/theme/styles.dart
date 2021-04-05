@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mi_weather/theme/assets.dart';
 
@@ -25,7 +24,7 @@ const BoxDecoration mainAppBarDecoration = BoxDecoration(
 const BoxDecoration nightAppBarDecoration = BoxDecoration(
   gradient: LinearGradient(
     colors: [
-      const Color.fromRGBO(255, 255, 255, 1),
+      const Color.fromRGBO(100, 194, 236, 1),
       const Color.fromRGBO(19, 107, 209, 1),
     ],
     begin: const FractionalOffset(0.0, 0.0),
@@ -55,9 +54,11 @@ const BoxDecoration mainContainerDecoration = BoxDecoration(
 const BoxDecoration nightContainerDecoration = BoxDecoration(
   gradient: LinearGradient(
     colors: [
-      const Color.fromRGBO(255, 255, 255, 1),
+      const Color.fromRGBO(100, 194, 236, 1),
       const Color.fromRGBO(19, 107, 209, 1),
     ],
+    // begin: Alignment.topCenter,
+    // end: Alignment.bottomCenter,
     begin: const FractionalOffset(0.0, 0.0),
     end: const FractionalOffset(1.0, 0.0),
     stops: [0.0, 1.0],

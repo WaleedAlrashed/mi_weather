@@ -1,10 +1,11 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mi_weather/models/weather.dart';
 import 'package:mi_weather/repositories/weather_repository.dart';
 import 'package:mi_weather/theme/styles.dart';
 import 'package:mi_weather/ui/views/main_location_view.dart';
+import 'package:oktoast/oktoast.dart';
 
 class SelectLocationView extends StatefulWidget {
   @override
@@ -38,6 +39,26 @@ class _SelectLocationViewState extends State<SelectLocationView> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  AnimatedTextKit(
+                    animatedTexts: [
+                      TypewriterAnimatedText(
+                        'Mi Weather',
+                        textStyle: const TextStyle(
+                          fontSize: 32.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        speed: const Duration(milliseconds: 300),
+                      ),
+                    ],
+                    totalRepeatCount: 4,
+                    pause: const Duration(milliseconds: 500),
+                    displayFullTextOnTap: true,
+                    stopPauseOnTap: true,
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
                   Text("Choose Your Location:", style: mainTextStyle),
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -85,7 +106,11 @@ class _SelectLocationViewState extends State<SelectLocationView> {
                   InkWell(
                     splashColor: Colors.red,
                     onTap: () {
-                      print("Gg");
+                      showToast(
+                        "Loading...",
+                        backgroundColor: Colors.green,
+                        position: ToastPosition.bottom,
+                      );
                       final _weatherRepository = WeatherRepository();
                       _weatherRepository
                           .getWeatherForCity(cityController.text)

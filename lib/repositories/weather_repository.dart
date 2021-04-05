@@ -4,7 +4,6 @@ import 'package:mi_weather/services/services_locator.dart';
 
 class WeatherRepository {
   final _networkService = locator<NetworkService>();
-  final _log = locator<LogService>();
 
   ///
   ///Get Weather data for a specified [city]
