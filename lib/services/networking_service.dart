@@ -12,7 +12,7 @@ import 'package:mi_weather/services/services_locator.dart';
 class NetworkService {
   static const String BASE_URL =
       "https://api.openweathermap.org/data/2.5/forecast?appid=$API_KEY&cnt=5&q=";
-  static const String API_KEY = "00e8b0d641802aa1843ca96219b28824";
+  static const String API_KEY = "INSERT_TOKEN_TOKEN";
 
   final logger = locator<LogService>();
 
